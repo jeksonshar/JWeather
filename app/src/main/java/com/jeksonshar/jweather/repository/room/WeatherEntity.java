@@ -4,19 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class WeatherEntity {
 
     @PrimaryKey
     @NonNull
     public String id;
-    public String date;
+    public long date;
     public String weatherState;
-    public String weatherStateURL;
-    public String tempMin;
-    public String tempMax;
-    public String tempFelt;
-    public String windSpeed;
-    public String airPressure;
-    public String humidity;
+    public String weatherStateAbbr;
+    public float tempMin;
+    public float tempMax;
+    public float tempFelt;
+    public float windSpeed;
+    public float airPressure;
+    public float humidity;
 }

@@ -1,5 +1,6 @@
 package com.jeksonshar.jweather.request;
 
+import com.jeksonshar.jweather.model.WeatherListModel;
 import com.jeksonshar.jweather.model.WeatherModel;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Networking {
 
-    public static List<WeatherModel> makeRequestByCity(int city) {
+    public static WeatherListModel makeRequestByCity(int city) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.metaweather.com")
@@ -20,13 +21,13 @@ public class Networking {
                 .build();
 
         WeatherAPI weatherAPI = retrofit.create(WeatherAPI.class);
-        Call<List<WeatherModel>> getWeatherByCity = weatherAPI.getDataByCity(city);
+        Call<WeatherListModel> getWeatherByCity = weatherAPI.getDataByCity(city);
 
         try {
             return getWeatherByCity.execute().body();
         } catch (IOException e) {
             e.printStackTrace();
-            return Collections.emptyList();
+            return null;
         }
     }
 

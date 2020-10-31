@@ -1,0 +1,159 @@
+{
+  "consolidated_weather": [
+    {
+      "id": 4909545106178048,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "N",
+      "created": "2020-10-29T22:56:12.036517Z",
+      "applicable_date": "2020-10-30",
+      "min_temp": 5.9,
+      "max_temp": 12.975000000000001,
+      "the_temp": 10.3,
+      "wind_speed": 2.494576871072934,
+      "wind_direction": 8.999999999999996,
+      "air_pressure": 1014.0,
+      "humidity": 82,
+      "visibility": 9.999726596675416,
+      "predictability": 71
+    },
+    {
+      "id": 6169565835821056,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "NE",
+      "created": "2020-10-29T22:56:14.504999Z",
+      "applicable_date": "2020-10-31",
+      "min_temp": 7.785,
+      "max_temp": 11.620000000000001,
+      "the_temp": 10.9,
+      "wind_speed": 3.245012328004454,
+      "wind_direction": 39.0,
+      "air_pressure": 1015.0,
+      "humidity": 87,
+      "visibility": 9.968658037063548,
+      "predictability": 77
+    },
+    {
+      "id": 4850000619110400,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "SSE",
+      "created": "2020-10-29T22:56:17.588682Z",
+      "applicable_date": "2020-11-01",
+      "min_temp": 8.625,
+      "max_temp": 12.004999999999999,
+      "the_temp": 10.33,
+      "wind_speed": 3.798409488586654,
+      "wind_direction": 166.5,
+      "air_pressure": 1013.0,
+      "humidity": 92,
+      "visibility": 9.999726596675416,
+      "predictability": 77
+    },
+    {
+      "id": 6038473971597312,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "ESE",
+      "created": "2020-10-29T22:56:20.175472Z",
+      "applicable_date": "2020-11-02",
+      "min_temp": 8.45,
+      "max_temp": 12.89,
+      "the_temp": 11.93,
+      "wind_speed": 4.737742384474668,
+      "wind_direction": 108.5,
+      "air_pressure": 1015.0,
+      "humidity": 83,
+      "visibility": 9.999726596675416,
+      "predictability": 77
+    },
+    {
+      "id": 5764030124785664,
+      "weather_state_name": "Light Cloud",
+      "weather_state_abbr": "lc",
+      "wind_direction_compass": "ESE",
+      "created": "2020-10-29T22:56:23.593737Z",
+      "applicable_date": "2020-11-03",
+      "min_temp": 7.46,
+      "max_temp": 13.120000000000001,
+      "the_temp": 11.39,
+      "wind_speed": 3.619240237015828,
+      "wind_direction": 107.0,
+      "air_pressure": 1025.0,
+      "humidity": 82,
+      "visibility": 9.999726596675416,
+      "predictability": 70
+    },
+    {
+      "id": 5531620854464512,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "E",
+      "created": "2020-10-29T22:56:26.154772Z",
+      "applicable_date": "2020-11-04",
+      "min_temp": 7.87,
+      "max_temp": 13.675,
+      "the_temp": 13.0,
+      "wind_speed": 3.411232203929054,
+      "wind_direction": 81.0,
+      "air_pressure": 1030.0,
+      "humidity": 74,
+      "visibility": 9.999726596675416,
+      "predictability": 71
+    }
+  ],
+  "time": "2020-10-30T00:57:30.938477+02:00",
+  "sun_rise": "2020-10-30T06:21:49.975523+02:00",
+  "sun_set": "2020-10-30T16:14:53.150836+02:00",
+  "timezone_name": "LMT",
+  "parent": {
+    "title": "Ukraine",
+    "location_type": "Country",
+    "woeid": 23424976,
+    "latt_long": "48.382881,31.173441"
+  },
+  "sources": [
+    {
+      "title": "BBC",
+      "slug": "bbc",
+      "url": "http://www.bbc.co.uk/weather/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Forecast.io",
+      "slug": "forecast-io",
+      "url": "http://forecast.io/",
+      "crawl_rate": 480
+    },
+    {
+      "title": "HAMweather",
+      "slug": "hamweather",
+      "url": "http://www.hamweather.com/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "OpenWeatherMap",
+      "slug": "openweathermap",
+      "url": "http://openweathermap.org/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Weather Underground",
+      "slug": "wunderground",
+      "url": "https://www.wunderground.com/?apiref=fc30dc3cd224e19b",
+      "crawl_rate": 720
+    },
+    {
+      "title": "World Weather Online",
+      "slug": "world-weather-online",
+      "url": "http://www.worldweatheronline.com/",
+      "crawl_rate": 360
+    }
+  ],
+  "title": "Kharkiv",
+  "location_type": "City",
+  "woeid": 922137,
+  "latt_long": "49.990101,36.230301",
+  "timezone": "Europe/Kiev"
+}

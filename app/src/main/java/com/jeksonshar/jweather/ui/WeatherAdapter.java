@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeksonshar.jweather.R;
+import com.jeksonshar.jweather.model.WeatherListModel;
 import com.jeksonshar.jweather.model.WeatherModel;
 
 import java.util.List;

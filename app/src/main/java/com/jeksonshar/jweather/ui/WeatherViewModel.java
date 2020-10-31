@@ -46,6 +46,6 @@ public class WeatherViewModel extends ViewModel {
     }
 
     private List<WeatherModel> executeRequest() {
-        return Networking.makeRequestByCity(city);
+        return Networking.makeRequestByCity(city).getConsolidatedWeather();
     }
 }

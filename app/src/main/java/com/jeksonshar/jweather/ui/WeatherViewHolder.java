@@ -11,6 +11,10 @@ import com.jeksonshar.jweather.R;
 import com.jeksonshar.jweather.model.WeatherModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class WeatherViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView date;
@@ -39,14 +43,32 @@ public class WeatherViewHolder extends RecyclerView.ViewHolder {
 
     public void bindTo(WeatherModel weatherModel) {
 
-        date.setText(weatherModel.getDate());
-        Picasso.get().load(weatherModel.getWeatherStateURL()).into(weatherStateImage);
-        String minMaxTemp = weatherModel.getTempMax() + "/" + weatherModel.getTempMin();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "EEEE\nd MMM yyyy", Locale.getDefault());
+        date.setText(dateFormat.format(weatherModel.getDate()));
+
+        Picasso.get()
+                .load("https://www.metaweather.com/static/img/weather/png/" + weatherModel.getWeatherStateAbbr() + ".png")
+                .into(weatherStateImage);
+
+        String minMaxTemp = Math.round(weatherModel.getTempMax()) + " / " + Math.round(weatherModel.getTempMin()) + " ˚C";
         temp.setText(minMaxTemp);
-        feltTemp.setText(weatherModel.getTempFelt());
-        windSpeed.setText(weatherModel.getWindSpeed());
-        airPressure.setText(weatherModel.getAirPressure());
-        humidity.setText(weatherModel.getHumidity());
+
+        String feltTemp = Math.round(weatherModel.getTempFelt()) + " ˚C";
+        this.feltTemp.setText(feltTemp);
+
+        float wind = weatherModel.getWindSpeed();
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        String windSpeed = decimalFormat.format(wind*0.44704) + " м/с"; // convert from mph to m/s
+        this.windSpeed.setText(windSpeed);
+
+        float pressure = weatherModel.getAirPressure();
+        String airPressure = Math.round(pressure/1.33322) + " мм"; // convert from mBar to mmHg
+        this.airPressure.setText(airPressure);
+
+        String humidity = Math.round(weatherModel.getHumidity()) + " %";
+        this.humidity.setText(humidity);
+
         weatherState.setText(weatherModel.getWeatherState());
     }
 }

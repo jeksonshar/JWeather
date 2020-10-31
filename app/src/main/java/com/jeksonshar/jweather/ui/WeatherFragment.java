@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeksonshar.jweather.R;
+import com.jeksonshar.jweather.model.WeatherListModel;
 import com.jeksonshar.jweather.model.WeatherModel;
 import com.jeksonshar.jweather.repository.Repository;
 import com.jeksonshar.jweather.repository.RepositoryProvider;
@@ -25,21 +26,21 @@ import java.util.List;
 
 public class WeatherFragment extends Fragment {
 
-    int city = 922137;
+    int city = 922137; // Kharkiv
 
     private RecyclerView mRecyclerView;
     private WeatherViewModel mWeatherViewModel;
     private WeatherAdapter mWeatherAdapter;
     private ImageButton changeView;
 
-    private Repository mRepository;
+//    private Repository mRepository;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        mRepository = RepositoryProvider.getInstance(getContext());
+//        mRepository = RepositoryProvider.getInstance(getContext());
 
         new InternetRequestTask().execute();
     }
@@ -81,7 +82,8 @@ public class WeatherFragment extends Fragment {
 
     @WorkerThread
     private List<WeatherModel> executeRequest(){
-        return Networking.makeRequestByCity(city);
+        WeatherListModel listWeatherModel = Networking.makeRequestByCity(city);
+        return listWeatherModel.getConsolidatedWeather();
     }
 
     private class InternetRequestTask extends AsyncTask<Void, Void, List<WeatherModel>> {

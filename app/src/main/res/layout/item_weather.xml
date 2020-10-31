@@ -2,9 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="108dp"
-    android:gravity="center">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
         android:id="@+id/date_item_weather"
         android:layout_width="0dp"
@@ -16,13 +20,14 @@
     <ImageView
         android:id="@+id/view_weather_state"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="104dp"
+        android:padding="24dp"
         android:layout_weight="2"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:orientation="vertical">
 
         <LinearLayout
@@ -30,16 +35,17 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView                android:layout_width="0dp"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Temp"
-                android:gravity="center"/>
+                android:layout_weight="3"
+                android:text="Температура"
+                android:gravity="end"/>
             <TextView
                 android:id="@+id/max_min_temp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 tools:text="-30/-35 ˚C"
                 android:gravity="center"/>
         </LinearLayout>
@@ -51,14 +57,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Felt"
-                android:gravity="center"/>
+                android:layout_weight="3"
+                android:text="Ощущается"
+                android:gravity="end"/>
             <TextView
                 android:id="@+id/felt_temp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 tools:text="- 25˚C"
                 android:gravity="center"/>
         </LinearLayout>
@@ -70,15 +76,15 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Wind"
-                android:gravity="center"/>
+                android:layout_weight="3"
+                android:text="Скорость ветра"
+                android:gravity="end"/>
             <TextView
                 android:id="@+id/wind_speed"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:text="10 мм/s"
+                android:layout_weight="2"
+                tools:text="10 м/s"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -89,14 +95,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Pressure"
-                android:gravity="center"/>
+                android:layout_weight="3"
+                android:text="Атм давление"
+                android:gravity="end"/>
             <TextView
                 android:id="@+id/air_pressure"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 tools:text="760 мм"
                 android:gravity="center"/>
         </LinearLayout>
@@ -108,14 +114,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Humidity"
-                android:gravity="center"/>
+                android:layout_weight="3"
+                android:text="Влажность"
+                android:gravity="end"/>
             <TextView
                 android:id="@+id/humidity"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 tools:text="70%"
                 android:gravity="center"/>
         </LinearLayout>
@@ -128,5 +134,11 @@
             android:text="weather state"
             android:gravity="center"/>
     </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="4dp"
+        android:background="#333"/>
 
 </LinearLayout>

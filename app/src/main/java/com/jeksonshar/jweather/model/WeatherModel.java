@@ -1,17 +1,38 @@
 package com.jeksonshar.jweather.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
+
 public class WeatherModel {
 
     private long id;
-    private String date;
-    private String weatherState;
-    private String weatherStateURL;
-    private String tempMin;
-    private String tempMax;
-    private String tempFelt;
-    private String windSpeed;
-    private String airPressure;
-    private String humidity;
+
+    @SerializedName("applicable_date")
+    private Date date;
+
+    @SerializedName("weather_state_name")
+    private String weatherStateName;
+
+    @SerializedName("weather_state_abbr")
+    private String weatherStateAbbr; // где выполнять запрос?
+
+    @SerializedName("min_temp")
+    private float tempMin;
+
+    @SerializedName("max_temp")
+    private float tempMax;
+
+    @SerializedName("the_temp")
+    private float tempFelt;
+
+    @SerializedName("wind_speed")
+    private float windSpeed;
+
+    @SerializedName("air_pressure")
+    private float airPressure;
+
+    private float humidity;
 
     public long getId() {
         return id;
@@ -21,75 +42,75 @@ public class WeatherModel {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     public String getWeatherState() {
-        return weatherState;
+        return weatherStateName;
     }
 
     public void setWeatherState(String weatherState) {
-        this.weatherState = weatherState;
+        this.weatherStateName = weatherState;
     }
 
-    public String getWeatherStateURL() {
-        return weatherStateURL;
+    public String getWeatherStateAbbr() {
+        return weatherStateAbbr;
     }
 
-    public void setWeatherStateURL(String weatherStateURL) {
-        this.weatherStateURL = weatherStateURL;
+    public void setWeatherStateURL(String weatherStateAbbr) {
+        this.weatherStateAbbr = weatherStateAbbr;
     }
 
-    public String getTempMin() {
+    public float getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(String tempMin) {
+    public void setTempMin(float tempMin) {
         this.tempMin = tempMin;
     }
 
-    public String getTempMax() {
+    public float getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(String tempMax) {
+    public void setTempMax(float tempMax) {
         this.tempMax = tempMax;
     }
 
-    public String getTempFelt() {
+    public float getTempFelt() {
         return tempFelt;
     }
 
-    public void setTempField(String tempFelt) {
+    public void setTempField(float tempFelt) {
         this.tempFelt = tempFelt;
     }
 
-    public String getWindSpeed() {
+    public float getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(String windSpeed) {
+    public void setWindSpeed(float windSpeed) {
         this.windSpeed = windSpeed;
     }
 
-    public String getAirPressure() {
+    public float getAirPressure() {
         return airPressure;
     }
 
-    public void setAirPressure(String airPressure) {
+    public void setAirPressure(float airPressure) {
         this.airPressure = airPressure;
     }
 
-    public String getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(float humidity) {
         this.humidity = humidity;
     }
 }

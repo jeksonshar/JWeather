@@ -2,6 +2,8 @@ package com.jeksonshar.jweather.repository.room;
 
 import com.jeksonshar.jweather.model.WeatherModel;
 
+import java.util.Date;
+
 public class Converter {
 
     static WeatherEntity convert(WeatherModel weatherModel) {
@@ -9,8 +11,8 @@ public class Converter {
         WeatherEntity weatherEntity = new WeatherEntity();
 
         weatherEntity.id = String.valueOf(weatherModel.getId());
-        weatherEntity.date = weatherModel.getDate();
-        weatherEntity.weatherStateURL = weatherModel.getWeatherStateURL();
+        weatherEntity.date = weatherModel.getDate().getTime();
+        weatherEntity.weatherStateAbbr = weatherModel.getWeatherStateAbbr();
         weatherEntity.weatherState = weatherModel.getWeatherState();
         weatherEntity.tempMax = weatherModel.getTempMax();
         weatherEntity.tempMin = weatherModel.getTempMin();
@@ -31,8 +33,12 @@ public class Converter {
             weatherModel = new WeatherModel();
 
             weatherModel.setId(Long.parseLong(weatherEntity.id));
-            weatherModel.setDate(weatherEntity.date);
-            weatherModel.setWeatherStateURL(weatherEntity.weatherStateURL);
+
+            Date date = new Date();
+            date.setTime(weatherEntity.date);
+            weatherModel.setDate(date);
+
+            weatherModel.setWeatherStateURL(weatherEntity.weatherStateAbbr);
             weatherModel.setWeatherState(weatherEntity.weatherState);
             weatherModel.setTempMax(weatherEntity.tempMax);
             weatherModel.setTempMin(weatherEntity.tempMin);
