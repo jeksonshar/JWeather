@@ -1,11 +1,8 @@
 package com.jeksonshar.jweather.request;
 
 import com.jeksonshar.jweather.model.WeatherListModel;
-import com.jeksonshar.jweather.model.WeatherModel;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

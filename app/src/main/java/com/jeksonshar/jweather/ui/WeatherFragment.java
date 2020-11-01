@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.jeksonshar.jweather.repository.Repository;
 import com.jeksonshar.jweather.repository.RepositoryProvider;
 import com.jeksonshar.jweather.request.Networking;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WeatherFragment extends Fragment {
@@ -33,14 +35,15 @@ public class WeatherFragment extends Fragment {
     private WeatherAdapter mWeatherAdapter;
     private ImageButton changeView;
 
-//    private Repository mRepository;
+    private List<WeatherModel> mWeatherModels;
+    private Repository mRepository;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-//        mRepository = RepositoryProvider.getInstance(getContext());
+        mRepository = RepositoryProvider.getInstance(getContext());
 
         new InternetRequestTask().execute();
     }
@@ -67,6 +70,12 @@ public class WeatherFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mWeatherModels = RepositoryProvider.getInstance(getActivity()).getAllItemsWeather();
+        if (mWeatherModels != null) {
+            mWeatherAdapter = new WeatherAdapter(mWeatherModels);
+            mRecyclerView.setAdapter(mWeatherAdapter);
+        }
+
         changeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,14 +85,20 @@ public class WeatherFragment extends Fragment {
     }
 
     @MainThread
-    private void applyItemWeathers(List<WeatherModel> weatherModel) {
-        mRecyclerView.setAdapter(new WeatherAdapter(weatherModel));
+    private void applyItemWeathers() {
+        mWeatherAdapter = new WeatherAdapter(RepositoryProvider.getInstance(getContext()).getAllItemsWeather());
+        mRecyclerView.setAdapter(mWeatherAdapter);
     }
 
     @WorkerThread
     private List<WeatherModel> executeRequest(){
         WeatherListModel listWeatherModel = Networking.makeRequestByCity(city);
-        return listWeatherModel.getConsolidatedWeather();
+        if (listWeatherModel != null) {
+            return listWeatherModel.getConsolidatedWeather();
+        }
+        else  {
+            return Collections.emptyList();
+        }
     }
 
     private class InternetRequestTask extends AsyncTask<Void, Void, List<WeatherModel>> {
@@ -94,8 +109,17 @@ public class WeatherFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<WeatherModel> weatherModel) {
-            applyItemWeathers(weatherModel);
+        protected void onPostExecute(List<WeatherModel> weatherModels) {
+            if (!weatherModels.isEmpty()) {
+                mRepository.saveItemsInRoom(weatherModels);
+            } else {
+                try {
+                    Toast.makeText(getActivity(), "No Internet connection", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            applyItemWeathers();
         }
     }
 }

@@ -23,8 +23,8 @@ public class WeatherModel {
     @SerializedName("max_temp")
     private float tempMax;
 
-    @SerializedName("the_temp")
-    private float tempFelt;
+//    @SerializedName("the_temp")
+//    private float tempFelt;
 
     @SerializedName("wind_speed")
     private float windSpeed;
@@ -82,13 +82,13 @@ public class WeatherModel {
         this.tempMax = tempMax;
     }
 
-    public float getTempFelt() {
-        return tempFelt;
-    }
-
-    public void setTempField(float tempFelt) {
-        this.tempFelt = tempFelt;
-    }
+//    public float getTempFelt() {
+//        return tempFelt;
+//    }
+//
+//    public void setTempField(float tempFelt) {
+//        this.tempFelt = tempFelt;
+//    }
 
     public float getWindSpeed() {
         return windSpeed;

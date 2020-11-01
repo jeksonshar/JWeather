@@ -17,7 +17,7 @@ public class WeatherEntity {
     public String weatherStateAbbr;
     public float tempMin;
     public float tempMax;
-    public float tempFelt;
+//    public float tempFelt;
     public float windSpeed;
     public float airPressure;
     public float humidity;

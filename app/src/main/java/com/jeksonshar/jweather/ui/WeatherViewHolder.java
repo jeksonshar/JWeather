@@ -20,7 +20,6 @@ public class WeatherViewHolder extends RecyclerView.ViewHolder {
     private final TextView date;
     private final ImageView weatherStateImage;
     private final TextView temp;
-    private final TextView feltTemp;
     private final TextView windSpeed;
     private final TextView airPressure;
     private final TextView humidity;
@@ -34,7 +33,6 @@ public class WeatherViewHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.date_item_weather);
         weatherStateImage = itemView.findViewById(R.id.view_weather_state);
         temp = itemView.findViewById(R.id.max_min_temp);
-        feltTemp = itemView.findViewById(R.id.felt_temp);
         windSpeed = itemView.findViewById(R.id.wind_speed);
         airPressure = itemView.findViewById(R.id.air_pressure);
         humidity = itemView.findViewById(R.id.humidity);
@@ -53,9 +51,6 @@ public class WeatherViewHolder extends RecyclerView.ViewHolder {
 
         String minMaxTemp = Math.round(weatherModel.getTempMax()) + " / " + Math.round(weatherModel.getTempMin()) + " ˚C";
         temp.setText(minMaxTemp);
-
-        String feltTemp = Math.round(weatherModel.getTempFelt()) + " ˚C";
-        this.feltTemp.setText(feltTemp);
 
         float wind = weatherModel.getWindSpeed();
         DecimalFormat decimalFormat = new DecimalFormat("#.#");

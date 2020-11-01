@@ -16,7 +16,7 @@ public class RoomRepository implements Repository {
 
     public RoomRepository(Context context) {
         mWeatherDao = Room
-                .databaseBuilder(context, WeatherDataBase.class, "weather-database1.sqLite")
+                .databaseBuilder(context, WeatherDataBase.class, "weather-database4.sqLite")
                 .allowMainThreadQueries()
                 .build()
                 .getWeatherDao();
@@ -33,6 +33,24 @@ public class RoomRepository implements Repository {
         return weatherModels;
     }
 
+    @Override
+    public void saveItemsInRoom(List<WeatherModel> weatherModels) {
+        List<WeatherEntity> weatherEntities = new ArrayList<>();
+
+        for (WeatherModel weatherModel: weatherModels) {
+            weatherEntities.add(Converter.convert(weatherModel));
+        }
+
+        if (mWeatherDao.getAllItemsWeather().isEmpty()) {
+            for (WeatherEntity weatherEntity: weatherEntities) {
+                mWeatherDao.saveWeatherModel(weatherEntity);
+            }
+        } else {
+            for (WeatherEntity weatherEntity : weatherEntities) {
+                mWeatherDao.updateWeatherModel(weatherEntity);
+            }
+        }
+    }
 //    @Override
 //    public WeatherModel getItemWeatherByID(int id) {
 //        return ;

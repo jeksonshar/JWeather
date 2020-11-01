@@ -1,6 +1,7 @@
 package com.jeksonshar.jweather.repository.room;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -15,6 +16,9 @@ public interface WeatherDao {
     @Query("SELECT*FROM WeatherEntity WHERE id == :id")
     WeatherEntity getByID(String id);
 
+    @Insert
+    void saveWeatherModel(WeatherEntity weatherEntity);
+
     @Update
-    void updateItemWeather(WeatherEntity entity); // ??? is need to Jweather?
+    void updateWeatherModel(WeatherEntity entity);
 }

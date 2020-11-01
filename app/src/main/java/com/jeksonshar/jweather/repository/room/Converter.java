@@ -16,7 +16,7 @@ public class Converter {
         weatherEntity.weatherState = weatherModel.getWeatherState();
         weatherEntity.tempMax = weatherModel.getTempMax();
         weatherEntity.tempMin = weatherModel.getTempMin();
-        weatherEntity.tempFelt = weatherModel.getTempFelt();
+//        weatherEntity.tempFelt = weatherModel.getTempFelt();
         weatherEntity.windSpeed = weatherModel.getWindSpeed();
         weatherEntity.airPressure = weatherModel.getAirPressure();
         weatherEntity.humidity = weatherModel.getHumidity();
@@ -42,7 +42,7 @@ public class Converter {
             weatherModel.setWeatherState(weatherEntity.weatherState);
             weatherModel.setTempMax(weatherEntity.tempMax);
             weatherModel.setTempMin(weatherEntity.tempMin);
-            weatherModel.setTempField(weatherEntity.tempFelt);
+//            weatherModel.setTempField(weatherEntity.tempFelt);
             weatherModel.setWindSpeed(weatherEntity.windSpeed);
             weatherModel.setAirPressure(weatherEntity.airPressure);
             weatherModel.setHumidity(weatherEntity.humidity);
