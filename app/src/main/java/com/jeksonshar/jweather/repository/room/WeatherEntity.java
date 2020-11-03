@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity
 public class WeatherEntity {
 
@@ -17,7 +15,6 @@ public class WeatherEntity {
     public String weatherStateAbbr;
     public float tempMin;
     public float tempMax;
-//    public float tempFelt;
     public float windSpeed;
     public float airPressure;
     public float humidity;

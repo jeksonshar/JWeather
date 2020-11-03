@@ -25,8 +25,6 @@ public class WeatherViewHolder extends RecyclerView.ViewHolder {
     private final TextView humidity;
     private final TextView weatherState;
 
-    private WeatherModel currantItemWeather;
-
     public WeatherViewHolder(@NonNull View itemView) {
         super(itemView);
 

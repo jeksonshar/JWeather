@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">JWeather</string>
-    <string name="no_internet">No internet connection</string>
+    <string name="no_internet">No internet connection, connect and try to update</string>
     <string name="last_update">Last update:</string>
 </resources>

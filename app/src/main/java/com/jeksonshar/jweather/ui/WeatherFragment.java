@@ -20,14 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jeksonshar.jweather.R;
-import com.jeksonshar.jweather.model.WeatherListModel;
 import com.jeksonshar.jweather.model.WeatherModel;
 import com.jeksonshar.jweather.repository.Repository;
 import com.jeksonshar.jweather.repository.RepositoryProvider;
-import com.jeksonshar.jweather.request.Networking;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,11 +35,13 @@ public class WeatherFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private WeatherViewModel mWeatherViewModel;
     private WeatherAdapter mWeatherAdapter;
-    private TextView lastUpdate;
+    private TextView lastUpdateView;
     private ImageButton changeView;
 
     private List<WeatherModel> mWeatherModels;
     private Repository mRepository;
+
+    private String lastUpdate;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class WeatherFragment extends Fragment {
         mWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory(city))
                 .get(WeatherViewModel.class);
 
-//        new InternetRequestTask().execute();      // do it if not using ViewModel
+//        new InternetRequestTask().execute();    // do it if not using ViewModel - пока не удалять
     }
 
     @Nullable
@@ -69,7 +68,7 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        lastUpdate = view.findViewById(R.id.last_update_view);
+        lastUpdateView = view.findViewById(R.id.last_update_view);
         mRecyclerView = view.findViewById(R.id.recyclerView);
         changeView = view.findViewById(R.id.fab);
     }
@@ -77,10 +76,6 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                " d MMM yyyy; HH:mm", Locale.getDefault());
-        lastUpdate.setText(dateFormat.format(mWeatherViewModel.getLastUpdate().getTime()));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -95,12 +90,17 @@ public class WeatherFragment extends Fragment {
             public void onChanged(List<WeatherModel> weatherModels) {
                 mWeatherModels = weatherModels;
                 if (!mWeatherModels.isEmpty()) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat(
+                            " d MMM yyyy; HH:mm", Locale.getDefault());
+                    lastUpdate = dateFormat.format(WeatherViewModel.lastUpdate.getTime());
+                    lastUpdateView.setText(lastUpdate);
                     mRepository.saveItemsInRoom(mWeatherModels);
                 } else {
                     Toast.makeText(getContext(), R.string.no_internet, Toast.LENGTH_LONG)
                             .show();
                 }
-                mWeatherAdapter = new WeatherAdapter(RepositoryProvider.getInstance(getContext())
+                mWeatherAdapter = new WeatherAdapter(RepositoryProvider
+                        .getInstance(getActivity())
                         .getAllItemsWeather());
                 mRecyclerView.setAdapter(mWeatherAdapter);
             }

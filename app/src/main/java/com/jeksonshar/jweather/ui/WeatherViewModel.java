@@ -21,11 +21,10 @@ public class WeatherViewModel extends ViewModel {
 
     private MutableLiveData<List<WeatherModel>> mLiveData;
 
-    private Calendar lastUpdate;
+    public static Calendar lastUpdate;
 
     public WeatherViewModel(int city) {
         this.city = city;
-        lastUpdate = Calendar.getInstance();
     }
 
     LiveData<List<WeatherModel>> getRequest() {
@@ -44,15 +43,12 @@ public class WeatherViewModel extends ViewModel {
     private List<WeatherModel> executeRequest(){
         WeatherListModel listWeatherModel = Networking.makeRequestByCity(city);
         if (listWeatherModel != null) {
+            lastUpdate = Calendar.getInstance();
             return listWeatherModel.getConsolidatedWeather();
         }
         else  {
             return Collections.emptyList();
         }
-    }
-
-    public Calendar getLastUpdate() {
-        return lastUpdate;
     }
 
     private class InternetRequestTask extends AsyncTask<Void, Void, List<WeatherModel>> {
