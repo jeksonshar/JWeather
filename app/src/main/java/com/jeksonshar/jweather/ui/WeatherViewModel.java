@@ -7,16 +7,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.jeksonshar.jweather.model.WeatherListModel;
 import com.jeksonshar.jweather.model.WeatherModel;
 import com.jeksonshar.jweather.request.Networking;
 
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class WeatherViewModel extends ViewModel {
 
-    int city = 922137;
+    private final int city;
 
     private MutableLiveData<List<WeatherModel>> mLiveData;
+
+    private Calendar lastUpdate;
+
+    public WeatherViewModel(int city) {
+        this.city = city;
+        lastUpdate = Calendar.getInstance();
+    }
 
     LiveData<List<WeatherModel>> getRequest() {
         if (mLiveData == null) {
@@ -31,6 +41,20 @@ public class WeatherViewModel extends ViewModel {
         new InternetRequestTask().execute();
     }
 
+    private List<WeatherModel> executeRequest(){
+        WeatherListModel listWeatherModel = Networking.makeRequestByCity(city);
+        if (listWeatherModel != null) {
+            return listWeatherModel.getConsolidatedWeather();
+        }
+        else  {
+            return Collections.emptyList();
+        }
+    }
+
+    public Calendar getLastUpdate() {
+        return lastUpdate;
+    }
+
     private class InternetRequestTask extends AsyncTask<Void, Void, List<WeatherModel>> {
 
         @Override
@@ -38,14 +62,9 @@ public class WeatherViewModel extends ViewModel {
             return executeRequest();
         }
 
-
         @Override
-        protected void onPostExecute(List<WeatherModel> weatherModel) {
-            mLiveData.postValue(weatherModel);
+        protected void onPostExecute(List<WeatherModel> weatherModels) {
+            mLiveData.postValue(weatherModels);
         }
-    }
-
-    private List<WeatherModel> executeRequest() {
-        return Networking.makeRequestByCity(city).getConsolidatedWeather();
     }
 }
