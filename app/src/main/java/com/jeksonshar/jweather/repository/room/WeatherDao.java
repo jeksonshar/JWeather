@@ -20,5 +20,5 @@ public interface WeatherDao {
     void saveWeatherModel(WeatherEntity weatherEntity);
 
     @Update
-    void updateWeatherModel(WeatherEntity entity);
+    void updateWeatherModel(WeatherEntity weatherEntity);
 }

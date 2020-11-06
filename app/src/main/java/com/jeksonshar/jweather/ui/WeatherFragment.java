@@ -48,7 +48,7 @@ public class WeatherFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        mRepository = RepositoryProvider.getInstance(getContext());
+        mRepository = RepositoryProvider.getInstanceListWeather(getContext());
 
         mWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory(city))
                 .get(WeatherViewModel.class);
@@ -79,10 +79,15 @@ public class WeatherFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mWeatherModels = RepositoryProvider.getInstance(getActivity()).getAllItemsWeather();
+        mWeatherModels = RepositoryProvider.getInstanceListWeather(getContext()).getAllItemsWeather();
         if (mWeatherModels != null) {
             mWeatherAdapter = new WeatherAdapter(mWeatherModels);
             mRecyclerView.setAdapter(mWeatherAdapter);
+        }
+
+        lastUpdate = RepositoryProvider.getInstanceLastUpdate(getContext()).getLastUpdate();
+        if (lastUpdate != null) {
+            lastUpdateView.setText(lastUpdate);
         }
 
         mWeatherViewModel.getRequest().observe(getViewLifecycleOwner(), new Observer<List<WeatherModel>>() {
@@ -94,13 +99,14 @@ public class WeatherFragment extends Fragment {
                             " d MMM yyyy; HH:mm", Locale.getDefault());
                     lastUpdate = dateFormat.format(WeatherViewModel.lastUpdate.getTime());
                     lastUpdateView.setText(lastUpdate);
+                    RepositoryProvider.getInstanceLastUpdate(getContext()).setLastUpdate(lastUpdate);
                     mRepository.saveItemsInRoom(mWeatherModels);
                 } else {
                     Toast.makeText(getContext(), R.string.no_internet, Toast.LENGTH_LONG)
                             .show();
                 }
                 mWeatherAdapter = new WeatherAdapter(RepositoryProvider
-                        .getInstance(getActivity())
+                        .getInstanceListWeather(getContext())
                         .getAllItemsWeather());
                 mRecyclerView.setAdapter(mWeatherAdapter);
             }
