@@ -2,7 +2,7 @@ package com.jeksonshar.jweather.repository
 
 import android.content.Context
 import com.jeksonshar.jweather.repository.room.RoomRepository
-
+//TODO лушче сделать application статикой и оттуда тянуть твои зависимости
 object RepositoryProvider {
 
     private var instanceListWeather: Repository? = null

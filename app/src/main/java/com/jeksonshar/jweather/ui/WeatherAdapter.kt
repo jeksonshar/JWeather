@@ -22,6 +22,6 @@ class WeatherAdapter(private val mWeatherModelList: List<WeatherModel>) : Recycl
     }
 
     init {
-        setHasStableIds(true)
+        setHasStableIds(true) //TODO в текущей реализации это не нужно
     }
 }

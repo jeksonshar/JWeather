@@ -3,6 +3,7 @@ package com.jeksonshar.jweather.model
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+//TODO data class нужно сделать, делать надо val
 class WeatherModel {
     var id: Long = 0
 
@@ -29,6 +30,8 @@ class WeatherModel {
     @SerializedName("air_pressure")
     var airPressure = 0f
     var humidity = 0f
+
+    //TODO В pojo классе не доллжно быть лишних сеттеров
     fun setWeatherStateURL(weatherStateAbbr: String?) {
         this.weatherStateAbbr = weatherStateAbbr
     }

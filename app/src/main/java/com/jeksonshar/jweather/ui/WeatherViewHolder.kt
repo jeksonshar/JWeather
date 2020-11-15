@@ -11,7 +11,7 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
-
+//TODO между переменными и методами лучше оставлять пробелы, лечге читается
 class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val date: TextView = itemView.findViewById(R.id.date_item_weather)
     private val weatherStateImage: ImageView = itemView.findViewById(R.id.view_weather_state)
@@ -22,21 +22,21 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val weatherState: TextView = itemView.findViewById(R.id.weather_state)
     fun bindTo(weatherModel: WeatherModel) {
         val dateFormat = SimpleDateFormat(
-                "EEEE\nd MMM yyyy", Locale.getDefault())
+                "EEEE\nd MMM yyyy", Locale.getDefault()) //TODO можно вынести в глобальную переменную
         date.text = dateFormat.format(weatherModel.date!!)
         Picasso.get()
-                .load("https://www.metaweather.com/static/img/weather/png/" + weatherModel.weatherStateAbbr + ".png")
+                .load("https://www.metaweather.com/static/img/weather/png/" + weatherModel.weatherStateAbbr + ".png") //TODO Это лучше формировать во ViewModel, сюда кидать готовую строчку
                 .into(weatherStateImage)
-        val minMaxTemp = weatherModel.tempMax.roundToInt().toString() + " / " + weatherModel.tempMin.roundToInt() + " ˚C"
+        val minMaxTemp = weatherModel.tempMax.roundToInt().toString() + " / " + weatherModel.tempMin.roundToInt() + " ˚C" //TODO Это лучше формировать во ViewModel, сюда кидать готовую строчку
         temp.text = minMaxTemp
         val wind = weatherModel.windSpeed
         val decimalFormat = DecimalFormat("#.#")
-        val windSpeed = decimalFormat.format(wind * 0.44704) + " м/с" // convert from mph to m/s
+        val windSpeed = decimalFormat.format(wind * 0.44704) + " м/с" // convert from mph to m/s //TODO Это лучше формировать во ViewModel, сюда кидать готовую строчку
         this.windSpeed.text = windSpeed
         val pressure = weatherModel.airPressure
-        val airPressure = (pressure / 1.33322).roundToInt().toString() + " мм" // convert from mBar to mmHg
+        val airPressure = (pressure / 1.33322).roundToInt().toString() + " мм" // convert from mBar to mmHg //TODO Это лучше формировать во ViewModel, сюда кидать готовую строчку
         this.airPressure.text = airPressure
-        val humidity = weatherModel.humidity.roundToInt().toString() + " %"
+        val humidity = weatherModel.humidity.roundToInt().toString() + " %" //TODO Это лучше формировать во ViewModel, сюда кидать готовую строчку
         this.humidity.text = humidity
         weatherState.text = weatherModel.weatherState
     }

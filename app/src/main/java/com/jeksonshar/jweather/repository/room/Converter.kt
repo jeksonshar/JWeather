@@ -21,7 +21,7 @@ object Converter {
         return weatherEntity
     }
 
-    fun convert(weatherEntity: WeatherEntity?): WeatherModel? {
+    fun convert(weatherEntity: WeatherEntity?): WeatherModel? { //TODO убрать nullable weatherEntity
 
         var weatherModel: WeatherModel? = null
 

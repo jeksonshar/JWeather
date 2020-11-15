@@ -5,11 +5,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
+//TODO Это лучше вынести в репозиторий и не object
 object Networking {
     fun makeRequestByCity(city: Int): WeatherListModel? {
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://www.metaweather.com")
+        val retrofit = Retrofit.Builder() //TODO retrofit в глобальную переменную
+                .baseUrl("https://www.metaweather.com") //TODO baseUrl в глобальную переменную
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
@@ -19,7 +20,7 @@ object Networking {
             getWeatherByCity!!.execute().body()
         } catch (e: IOException) {
             e.printStackTrace()
-            null
+            null //TODO ошибки надо прокидывать
         }
     }
 

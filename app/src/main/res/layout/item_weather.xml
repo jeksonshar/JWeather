@@ -75,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+            <!--TODO текст нужно выносить в ресурсы -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -128,6 +129,7 @@
                 android:gravity="center"/>
         </LinearLayout>
 
+        <!--TODO Тут вроде не нужен текст-->
         <TextView
             android:id="@+id/weather_state"
             android:layout_width="match_parent"
@@ -137,6 +139,8 @@
             android:gravity="center"/>
     </LinearLayout>
     </LinearLayout>
+
+    <!--TODO Это надо вынести в ItemDecoration -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

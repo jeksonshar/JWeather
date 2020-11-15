@@ -10,9 +10,9 @@ import com.jeksonshar.jweather.request.Networking
 import java.util.*
 
 class WeatherViewModel(private val city: Int) : ViewModel() {
-    private var mLiveData: MutableLiveData<List<WeatherModel>?>? = null
-    val request: LiveData<List<WeatherModel>?>
-        get() {
+    private var mLiveData: MutableLiveData<List<WeatherModel>?>? = null//TODO может быть NotNull
+    val request: LiveData<List<WeatherModel>?>//TODO может быть NotNull
+        get() {///TODO Пока непонятно зачем тут этот код, обсудим
             if (mLiveData == null) {
                 mLiveData = MutableLiveData()
                 setRequest()
@@ -20,18 +20,18 @@ class WeatherViewModel(private val city: Int) : ViewModel() {
             return mLiveData as MutableLiveData<List<WeatherModel>?>
         }
 
-    @MainThread
+    @MainThread//TODO Зачем аннотация? Надо убрать
     private fun setRequest() {
         InternetRequestTask().execute()
     }
 
-    private fun executeRequest(): List<WeatherModel>? {
+    private fun executeRequest(): List<WeatherModel>? {//TODO можно вернуть notNull
         val listWeatherModel = Networking.makeRequestByCity(city)
         return if (listWeatherModel != null) {
             lastUpdate = Calendar.getInstance()
             listWeatherModel.consolidatedWeather
         } else {
-            emptyList()
+            emptyList() //TODO наверное, стоит обработать как ошибку
         }
     }
 
@@ -47,6 +47,6 @@ class WeatherViewModel(private val city: Int) : ViewModel() {
     }
 
     companion object {
-        var lastUpdate: Calendar? = null
+        var lastUpdate: Calendar? = null //TODO почему вынесено как статик?
     }
 }

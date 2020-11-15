@@ -3,7 +3,7 @@ package com.jeksonshar.jweather.repository.room
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity //TODO data class, val
 class WeatherEntity {
 
     @JvmField
