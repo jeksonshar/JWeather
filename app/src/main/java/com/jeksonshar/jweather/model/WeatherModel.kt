@@ -4,35 +4,31 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 //TODO data class нужно сделать, делать надо val
-class WeatherModel {
-    var id: Long = 0
+    // с val параметры не могут быть перезаписаны в Converter, ошибка компиляции
+data class WeatherModel (
 
-    @SerializedName("applicable_date")
-    var date: Date? = null
+    var id: Long = 0,
 
-    @SerializedName("weather_state_name")
-    var weatherState: String? = null
+        @SerializedName("applicable_date")
+    var date: Date? = null,
 
-    @SerializedName("weather_state_abbr")
-    var weatherStateAbbr // где выполнять запрос?
-            : String? = null
-        private set
+        @SerializedName("weather_state_name")
+    var weatherState: String? = null,
 
-    @SerializedName("min_temp")
-    var tempMin = 0f
+        @SerializedName("weather_state_abbr")
+    var weatherStateAbbr: String? = null,
 
-    @SerializedName("max_temp")
-    var tempMax = 0f
+        @SerializedName("min_temp")
+    var tempMin: Float = 0f,
 
-    @SerializedName("wind_speed")
-    var windSpeed = 0f
+        @SerializedName("max_temp")
+    var tempMax: Float = 0f,
 
-    @SerializedName("air_pressure")
-    var airPressure = 0f
-    var humidity = 0f
+        @SerializedName("wind_speed")
+    var windSpeed: Float = 0f,
 
-    //TODO В pojo классе не доллжно быть лишних сеттеров
-    fun setWeatherStateURL(weatherStateAbbr: String?) {
-        this.weatherStateAbbr = weatherStateAbbr
-    }
-}
+        @SerializedName("air_pressure")
+    var airPressure: Float = 0f,
+
+    var humidity: Float = 0f
+)

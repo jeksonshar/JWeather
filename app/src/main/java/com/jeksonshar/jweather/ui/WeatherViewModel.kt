@@ -10,17 +10,16 @@ import com.jeksonshar.jweather.request.Networking
 import java.util.*
 
 class WeatherViewModel(private val city: Int) : ViewModel() {
-    private var mLiveData: MutableLiveData<List<WeatherModel>?>? = null//TODO может быть NotNull
-    val request: LiveData<List<WeatherModel>?>//TODO может быть NotNull
+
+    private lateinit var mLiveData: MutableLiveData<List<WeatherModel>>
+    val request: LiveData<List<WeatherModel>>
+
         get() {///TODO Пока непонятно зачем тут этот код, обсудим
-            if (mLiveData == null) {
-                mLiveData = MutableLiveData()
-                setRequest()
-            }
-            return mLiveData as MutableLiveData<List<WeatherModel>?>
+            mLiveData = MutableLiveData()
+            setRequest()
+            return mLiveData
         }
 
-    @MainThread//TODO Зачем аннотация? Надо убрать
     private fun setRequest() {
         InternetRequestTask().execute()
     }
@@ -32,6 +31,7 @@ class WeatherViewModel(private val city: Int) : ViewModel() {
             listWeatherModel.consolidatedWeather
         } else {
             emptyList() //TODO наверное, стоит обработать как ошибку
+                    // не получается реализовать тут Toast, не пойму как получить сонтекст
         }
     }
 
@@ -41,12 +41,13 @@ class WeatherViewModel(private val city: Int) : ViewModel() {
         }
 
         override fun onPostExecute(weatherModels: List<WeatherModel>?) {
-            mLiveData!!.postValue(weatherModels)
+            mLiveData.postValue(weatherModels)
         }
 
     }
 
     companion object {
-        var lastUpdate: Calendar? = null //TODO почему вынесено как статик?
+        lateinit var lastUpdate: Calendar //TODO почему вынесено как статик?
+                   //чтобы была возможность обращаться по имени класса и был единственным экземпляром класса
     }
 }

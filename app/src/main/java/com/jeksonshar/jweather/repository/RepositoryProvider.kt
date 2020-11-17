@@ -5,10 +5,10 @@ import com.jeksonshar.jweather.repository.room.RoomRepository
 //TODO лушче сделать application статикой и оттуда тянуть твои зависимости
 object RepositoryProvider {
 
-    private var instanceListWeather: Repository? = null
+    private var instanceListWeather: RepositoryDataBase? = null
     private var instanceLastUpdate: SharedPreferencesRepository? = null
 
-    fun getInstanceListWeather(context: Context?): Repository? {
+    fun getInstanceListWeather(context: Context?): RepositoryDataBase? {
         if (instanceListWeather == null) {
             instanceListWeather = RoomRepository(context)
         }

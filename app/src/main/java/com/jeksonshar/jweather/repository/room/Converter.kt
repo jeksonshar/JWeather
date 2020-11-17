@@ -21,13 +21,10 @@ object Converter {
         return weatherEntity
     }
 
-    fun convert(weatherEntity: WeatherEntity?): WeatherModel? { //TODO убрать nullable weatherEntity
+    fun convert(weatherEntity: WeatherEntity): WeatherModel? {
 
-        var weatherModel: WeatherModel? = null
-
-        if (weatherEntity != null) {
-
-            weatherModel = WeatherModel()
+        val weatherModel: WeatherModel?
+        weatherModel = WeatherModel()
 
             weatherModel.id = weatherEntity.id.toLong()
 
@@ -35,14 +32,14 @@ object Converter {
             date.time = weatherEntity.date
             weatherModel.date = date
 
-            weatherModel.setWeatherStateURL(weatherEntity.weatherStateAbbr)
+            weatherModel.weatherStateAbbr = weatherEntity.weatherStateAbbr
             weatherModel.weatherState = weatherEntity.weatherState
             weatherModel.tempMax = weatherEntity.tempMax
             weatherModel.tempMin = weatherEntity.tempMin
             weatherModel.windSpeed = weatherEntity.windSpeed
             weatherModel.airPressure = weatherEntity.airPressure
             weatherModel.humidity = weatherEntity.humidity
-        }
+
         return weatherModel
     }
 }

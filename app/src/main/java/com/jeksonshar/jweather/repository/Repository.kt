@@ -2,7 +2,7 @@ package com.jeksonshar.jweather.repository
 
 import com.jeksonshar.jweather.model.WeatherModel
 
-interface Repository { //TODO слишком общее название, это интерфейс работает только с бд
+interface RepositoryDataBase {
 
     val allItemsWeather: List<WeatherModel>?
 

@@ -3,10 +3,10 @@ package com.jeksonshar.jweather.repository.room
 import android.content.Context
 import com.jeksonshar.jweather.model.WeatherModel
 import androidx.room.Room
-import com.jeksonshar.jweather.repository.Repository
+import com.jeksonshar.jweather.repository.RepositoryDataBase
 import java.util.ArrayList
 
-class RoomRepository(context: Context?) : Repository { //TODO контекст NotNull
+class RoomRepository(context: Context?) : RepositoryDataBase { //TODO контекст NotNull
 
     private val mWeatherDao: WeatherDao? = Room
             .databaseBuilder(context!!, WeatherDataBase::class.java, "weather-database5.sqLite")

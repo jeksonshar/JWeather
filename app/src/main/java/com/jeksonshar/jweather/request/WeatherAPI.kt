@@ -8,7 +8,7 @@ import retrofit2.http.Path
 interface WeatherAPI {
 
     @GET("/api/location/{city}")
-    fun getDataByCity(@Path("city") city: Int): Call<WeatherListModel?>? //TODO тут возвращается NotNull
+    fun getDataByCity(@Path("city") city: Int): Call<WeatherListModel>
 
     //    @GET("/api/location/search/?query={city}")
     //    Call<City> getCity(@Path("city") String city);

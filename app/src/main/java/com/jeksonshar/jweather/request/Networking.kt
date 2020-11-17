@@ -7,6 +7,7 @@ import java.io.IOException
 
 //TODO Это лучше вынести в репозиторий и не object
 object Networking {
+
     fun makeRequestByCity(city: Int): WeatherListModel? {
 
         val retrofit = Retrofit.Builder() //TODO retrofit в глобальную переменную
@@ -17,7 +18,7 @@ object Networking {
         val weatherAPI = retrofit.create(WeatherAPI::class.java)
         val getWeatherByCity = weatherAPI.getDataByCity(city)
         return try {
-            getWeatherByCity!!.execute().body()
+            getWeatherByCity.execute().body()
         } catch (e: IOException) {
             e.printStackTrace()
             null //TODO ошибки надо прокидывать
